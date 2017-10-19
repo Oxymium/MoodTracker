@@ -15,7 +15,7 @@ import oxymium.moodtracker.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Variable init
+    //variables init
     private ConstraintLayout mHappyLayout; //Main layout frame
 
     private ImageView mSmiley; // Main Smiley (unused yet)
@@ -30,13 +30,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //apply findViewById method to variables, cast type
-        mSmiley = (ImageView) findViewById(R.id.mt_smiley);
+        mSmiley = (ImageView) findViewById(R.id.mt_smiley); //unused yet
+
         mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
         mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
 
         mHappyLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_happy);
 
-        //play happy song onCreate
+        //loads song & plays it onCreate
         mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
         mPlayHappySong.start();
 

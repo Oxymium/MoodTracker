@@ -5,13 +5,16 @@ import android.media.MediaPlayer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import oxymium.moodtracker.R;
 
 public class NormalActivity extends AppCompatActivity {
 
+    //variables init
     private ConstraintLayout mNormalLayout;
-
+    private ImageButton mHistoryButton;
     private MediaPlayer mPlayNormalSong; // MediaPlayer to play normal_song.wave
 
     @Override
@@ -25,6 +28,21 @@ public class NormalActivity extends AppCompatActivity {
         mPlayNormalSong = MediaPlayer.create(getApplicationContext(), R.raw.normal_song);
         mPlayNormalSong.start();
 
+        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
+
+        //set listener on mHistoryButton
+        mHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //when clicked, start HistoryActivity
+                Intent historyActivity = new Intent(NormalActivity.this, HistoryActivity.class);
+                startActivity(historyActivity);
+
+            }
+
+        });
+
+        //set listener on screen (mHappyLayout) to touchSwipe (calls OnSwipeTouchListener class)
         mNormalLayout.setOnTouchListener(new OnSwipeTouchListener(NormalActivity.this) {
 
             public void onSwipeBottom() {
