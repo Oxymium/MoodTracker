@@ -1,6 +1,7 @@
 package oxymium.moodtracker.controller;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,15 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
     //Variable init
     private ConstraintLayout mHappyLayout; //Main layout frame
-    private ConstraintLayout mSuperHappyLayout; //layout super happy
-    private ConstraintLayout mNormalLayout; //layout normal
-    private ConstraintLayout mDisappointedLayout; //layout disappointed
-    private ConstraintLayout mSadLayout; //layout sad
 
-
-    private ImageView mSmiley; // Main Smiley
+    private ImageView mSmiley; // Main Smiley (unused yet)
     private ImageButton mNoteButton; // Bottom left button (note)
     private ImageButton mHistoryButton; // Bottom right button (history)
+
+    private MediaPlayer mPlayHappySong; // MediaPlayer to play happy_song.wave
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
         mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
 
         mHappyLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_happy);
-        mSuperHappyLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_super_happy);
-        mNormalLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_normal);
-        mSadLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_sad);
-        mDisappointedLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_disappointed);
 
+        //play happy song onCreate
+        mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
+        mPlayHappySong.start();
 
         //set listener on mHistoryButton
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
