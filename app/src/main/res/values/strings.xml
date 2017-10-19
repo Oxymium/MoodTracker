@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MoodTracker</string>
+    <string name="mt_smiley_happy">Happy Smile</string>
+    <string name="mt_smiley_super_happy">Super Smile</string>
+    <string name="mt_smiley_disappointed">Disappointed Smile</string>
+    <string name="mt_smiley_sad">Sad Smile</string>
+    <string name="mt_smiley_normal">Normal Smile</string>
+
+    <string name="mt_history_button">History Button</string>
+    <string name="mt_note_button">Note Button</string>
+
 </resources>

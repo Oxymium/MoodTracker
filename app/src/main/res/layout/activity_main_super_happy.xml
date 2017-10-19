@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mt_full_layout_happy"
+    android:id="@+id/mt_full_layout_super_happy"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="oxymium.moodtracker.controller.MainActivity"
-    android:background="@color/light_sage">
+    tools:context="oxymium.moodtracker.controller.SuperHappyActivity"
+    android:background="@color/banana_yellow">
 
     <ImageView
         android:id="@+id/mt_smiley"
-        android:contentDescription="@string/mt_smiley_happy"
+        android:contentDescription="@string/mt_smiley_super_happy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/smiley_happy"
+        android:src="@drawable/smiley_super_happy"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/light_sage"
+        android:background="@color/banana_yellow"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.913"
-        android:background="@color/light_sage"
+        android:background="@color/banana_yellow"
         android:layout_marginStart="16dp" />
 
     <ImageButton
@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.916"
-        android:background="@color/light_sage"
+        android:background="@color/banana_yellow"
         android:layout_marginEnd="11dp" />
 
 
