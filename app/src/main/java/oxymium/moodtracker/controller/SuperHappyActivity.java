@@ -7,28 +7,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import oxymium.moodtracker.R;
 
 public class SuperHappyActivity extends AppCompatActivity {
 
     //variables init
-    private ConstraintLayout mSuperHappyLayout; //layout super happy
-    private ImageButton mHistoryButton;
-    private MediaPlayer mPlaySuperHappySong; //MediaPlayer music super happy
+    private ConstraintLayout mMainLayout; //Main layout frame
+
+    private ImageView mSmiley; // Main Smiley (unused yet)
+    private ImageButton mNoteButton; // Bottom left button (note)
+    private ImageButton mHistoryButton; // Bottom right button (history)
+
+    private MediaPlayer mPlayHappySong; // MediaPlayer to play happy_song.wave
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_super_happy);
+        setContentView(R.layout.activity_main);
 
-        mSuperHappyLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_super_happy);
+        //apply findViewById method to variables, cast type
+        mSmiley = (ImageView) findViewById(R.id.mt_smiley);
+        mMainLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout);
+
+        mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
+        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
+
+        //set background color (super happy = yellow)
+        mMainLayout.setBackgroundResource(R.color.banana_yellow);
+        //set smiley (mood = super happy)
+        mSmiley.setImageResource(R.drawable.smiley_super_happy);
 
         //loads song & plays it onCreate
-        mPlaySuperHappySong = MediaPlayer.create(getApplicationContext(), R.raw.super_happy_song);
-        mPlaySuperHappySong.start();
-
-        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
+        mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.super_happy_song);
+        mPlayHappySong.start();
 
         //set listener on mHistoryButton
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +57,7 @@ public class SuperHappyActivity extends AppCompatActivity {
 
 
         //set listener on screen (mHappyLayout) to touchSwipe (calls OnSwipeTouchListener class)
-        mSuperHappyLayout.setOnTouchListener(new OnSwipeTouchListener(SuperHappyActivity.this) {
+        mMainLayout.setOnTouchListener(new OnSwipeTouchListener(SuperHappyActivity.this) {
 
             public void onSwipeBottom() {
                 Intent mainActivity = new Intent(SuperHappyActivity.this, MainActivity.class);

@@ -7,28 +7,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import oxymium.moodtracker.R;
 
 public class NormalActivity extends AppCompatActivity {
 
     //variables init
-    private ConstraintLayout mNormalLayout;
-    private ImageButton mHistoryButton;
-    private MediaPlayer mPlayNormalSong; // MediaPlayer to play normal_song.wave
+    private ConstraintLayout mMainLayout; //Main layout frame
+
+    private ImageView mSmiley; // Main Smiley (unused yet)
+    private ImageButton mNoteButton; // Bottom left button (note)
+    private ImageButton mHistoryButton; // Bottom right button (history)
+
+    private MediaPlayer mPlayHappySong; // MediaPlayer to play happy_song.wave
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_normal);
+        setContentView(R.layout.activity_main);
 
-        mNormalLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_normal);
+        mSmiley = (ImageView) findViewById(R.id.mt_smiley);
+        mMainLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout);
+
+        mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
+        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
+
+        //set background color (normal = blue)
+        mMainLayout.setBackgroundResource(R.color.cornflower_blue_65);
+        //set smiley (mood = normal)
+        mSmiley.setImageResource(R.drawable.smiley_normal);
 
         //loads song & plays it onCreate
-        mPlayNormalSong = MediaPlayer.create(getApplicationContext(), R.raw.normal_song);
-        mPlayNormalSong.start();
-
-        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
+        mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.normal_song);
+        mPlayHappySong.start();
 
         //set listener on mHistoryButton
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +55,7 @@ public class NormalActivity extends AppCompatActivity {
         });
 
         //set listener on screen (mHappyLayout) to touchSwipe (calls OnSwipeTouchListener class)
-        mNormalLayout.setOnTouchListener(new OnSwipeTouchListener(NormalActivity.this) {
+        mMainLayout.setOnTouchListener(new OnSwipeTouchListener(NormalActivity.this) {
 
             public void onSwipeBottom() {
                 Intent disappointedActivity = new Intent(NormalActivity.this, DisappointedActivity.class);

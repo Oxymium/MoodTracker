@@ -16,7 +16,7 @@ import oxymium.moodtracker.R;
 public class MainActivity extends AppCompatActivity {
 
     //variables init
-    private ConstraintLayout mHappyLayout; //Main layout frame
+    private ConstraintLayout mMainLayout; //Main layout frame
 
     private ImageView mSmiley; // Main Smiley (unused yet)
     private ImageButton mNoteButton; // Bottom left button (note)
@@ -29,13 +29,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //apply findViewById method to variables, cast type
-        mSmiley = (ImageView) findViewById(R.id.mt_smiley); //unused yet
+        mSmiley = (ImageView) findViewById(R.id.mt_smiley);
+        mMainLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout);
 
         mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
         mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
 
-        mHappyLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout_happy);
+        //set background color (default = light sage)
+        mMainLayout.setBackgroundResource(R.color.light_sage);
+        //set smiley (default mood = happy)
+        mSmiley.setImageResource(R.drawable.smiley_happy);
 
         //loads song & plays it onCreate
         mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //set listener on screen (mHappyLayout) to touchSwipe (calls OnSwipeTouchListener class)
-        mHappyLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+        mMainLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
 
 
             public void onSwipeTop() {
