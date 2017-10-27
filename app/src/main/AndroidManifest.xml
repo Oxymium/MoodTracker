@@ -17,10 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.HistoryActivity" />
-        <activity android:name=".controller.SadActivity" />
-        <activity android:name=".controller.SuperHappyActivity" />
-        <activity android:name=".controller.NormalActivity" />
-        <activity android:name=".controller.DisappointedActivity"></activity>
     </application>
 
 </manifest>

@@ -8,5 +8,9 @@
 
     <string name="mt_history_button">History Button</string>
     <string name="mt_note_button">Note Button</string>
+    <string name ="mt_vertical_pager_smiley_view">Vertical Pager Viewer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

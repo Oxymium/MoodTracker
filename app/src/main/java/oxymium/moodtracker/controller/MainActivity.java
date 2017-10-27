@@ -3,6 +3,8 @@ package oxymium.moodtracker.controller;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,8 @@ import oxymium.moodtracker.R;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    FragmentPagerAdapter adapterViewPager;
 
     //variables init
     private ConstraintLayout mMainLayout; //Main layout frame
@@ -29,51 +33,77 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mMainLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout);
+        mSmiley = (ImageView) findViewById(R.id.mt_smiley_image);
 
-        //apply findViewById method to variables, cast type
-        mSmiley = (ImageView) findViewById(R.id.mt_smiley);
+        VerticalViewPager vpPager = (VerticalViewPager) findViewById(R.id.vpPager);
+        adapterViewPager = new CustomPagerAdapter(getSupportFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
+
+        // onCreate, set vpPager.setCurrentItem(1) (Happy Smiley) by default
+
+        vpPager.setCurrentItem(3);
+        mMainLayout.setBackgroundResource(R.color.light_sage);
+
+        // TEST
+
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                if(position == 0){
+                    mMainLayout.setBackgroundResource(R.color.faded_red);
+                    mSmiley.setImageResource(R.drawable.smiley_sad);
+                }
+
+                if(position == 1) {
+                    mMainLayout.setBackgroundResource(R.color.warm_grey);
+                    mSmiley.setImageResource(R.drawable.smiley_disappointed);
+
+                }
+
+                if(position == 2) {
+                    mMainLayout.setBackgroundResource(R.color.cornflower_blue_65);
+                    mSmiley.setImageResource(R.drawable.smiley_normal);
+
+                }
+
+                if(position == 3) {
+                    mMainLayout.setBackgroundResource(R.color.light_sage);
+                    mSmiley.setImageResource(R.drawable.smiley_happy);
+
+                }
+
+                if(position == 4) {
+                    mMainLayout.setBackgroundResource(R.color.banana_yellow);
+                    mSmiley.setImageResource(R.drawable.smiley_super_happy);
+
+                }
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+
+
         mMainLayout = (ConstraintLayout) findViewById(R.id.mt_full_layout);
 
-        mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
-        mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
-
-        //set background color (default = light sage)
-        mMainLayout.setBackgroundResource(R.color.light_sage);
-        //set smiley (default mood = happy)
-        mSmiley.setImageResource(R.drawable.smiley_happy);
-
-        //loads song & plays it onCreate
-        mPlayHappySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
-        mPlayHappySong.start();
-
-        //set listener on mHistoryButton
-        mHistoryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //when clicked, start HistoryActivity
-                Intent historyActivity = new Intent(MainActivity.this, HistoryActivity.class);
-                startActivity(historyActivity);
 
 
-            }
-
-        });
-
-        //set listener on screen (mHappyLayout) to touchSwipe (calls OnSwipeTouchListener class)
-        mMainLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
 
 
-            public void onSwipeTop() {
-                Intent superHappyActivity = new Intent(MainActivity.this, SuperHappyActivity.class);
-                startActivity(superHappyActivity);
-            }
 
-            public void onSwipeBottom() {
-                Intent normalActivity = new Intent(MainActivity.this, NormalActivity.class);
-                startActivity(normalActivity);
-
-            }
-
-        });
     }
+
 }
