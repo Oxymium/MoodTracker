@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import oxymium.moodtracker.R;
 
@@ -38,18 +37,18 @@ public class SadFragment extends Fragment {
         title = getArguments().getString("someTitle");
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View vSadSmileyLayout = inflater.inflate(R.layout.fragment_sad_layout, container, false);
         ImageView mSadSmileyView = new ImageView(getActivity());
 
-        // Draw [smiley_sad] & background color to [faded_red]
+        // Draw [smiley_happy] & background color to [light_sage]
+        //mHappySmileyView.setImageResource(R.drawable.smiley_sad);
+        //mHappySmileyView.setBackgroundResource(R.color.light_sage);
 
-        //mSadSmileyView.setImageResource(R.drawable.smiley_sad);
-        //mSadSmileyView.setBackgroundResource(R.color.faded_red);
 
-        return mSadSmileyView;
+        return vSadSmileyLayout;
     }
 
 }
