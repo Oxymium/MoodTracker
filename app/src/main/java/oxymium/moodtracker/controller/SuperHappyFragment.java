@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import oxymium.moodtracker.R;
 
@@ -38,18 +37,12 @@ public class SuperHappyFragment extends Fragment {
         title = getArguments().getString("someTitle");
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ImageView mSuperHappySmileyView = new ImageView(getActivity());
+        View vSuperHappySmileyLayout = inflater.inflate(R.layout.fragment_super_happy_layout, container, false);
 
-        // Draw [smiley_super_happy] & background color to [banana_yellow]
-
-        //mSuperHappySmileyView.setImageResource(R.drawable.smiley_super_happy);
-        //mSuperHappySmileyView.setBackgroundResource(R.color.banana_yellow);
-
-        return mSuperHappySmileyView;
+        return vSuperHappySmileyLayout;
     }
 
 }

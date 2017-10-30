@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import oxymium.moodtracker.R;
 
@@ -19,6 +18,7 @@ public class DisappointedFragment extends Fragment {
     // Store instance variables
     private String title;
     private int page;
+
 
     // newInstance constructor for creating fragment with arguments
     public static DisappointedFragment newInstance(int page, String title) {
@@ -38,17 +38,13 @@ public class DisappointedFragment extends Fragment {
         title = getArguments().getString("someTitle");
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ImageView mDisappointedSmileyView = new ImageView(getActivity());
+        View vDisappointedSmileyLayout = inflater.inflate(R.layout.fragment_disappointed_layout, container, false);
 
-        // Draw [smiley_disappointed] & background color to [warm_grey]
 
-        //mDisappointedSmileyView.setImageResource(R.drawable.smiley_disappointed);
-        //mDisappointedSmileyView.setBackgroundResource(R.color.warm_grey);
-        return mDisappointedSmileyView;
+        return vDisappointedSmileyLayout;
     }
 
 }

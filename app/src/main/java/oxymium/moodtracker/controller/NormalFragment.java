@@ -2,13 +2,11 @@ package oxymium.moodtracker.controller;
 
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import oxymium.moodtracker.R;
 
@@ -42,12 +40,9 @@ public class NormalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ImageView mNormalSmileyView = new ImageView(getActivity());
-        // Draw [smiley_normal] & background color to [cornflower_blue_65]
+        View vNormalSmileyLayout = inflater.inflate(R.layout.fragment_normal_layout, container, false);
 
-        //mNormalSmileyView.setImageResource(R.drawable.smiley_normal);
-        //mNormalSmileyView.setBackgroundResource(R.color.cornflower_blue_65);
-        return mNormalSmileyView;
+        return vNormalSmileyLayout;
     }
 
 }

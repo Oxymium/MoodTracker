@@ -41,12 +41,6 @@ public class SadFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vSadSmileyLayout = inflater.inflate(R.layout.fragment_sad_layout, container, false);
-        ImageView mSadSmileyView = new ImageView(getActivity());
-
-        // Draw [smiley_happy] & background color to [light_sage]
-        //mHappySmileyView.setImageResource(R.drawable.smiley_sad);
-        //mHappySmileyView.setBackgroundResource(R.color.light_sage);
-
 
         return vSadSmileyLayout;
     }
