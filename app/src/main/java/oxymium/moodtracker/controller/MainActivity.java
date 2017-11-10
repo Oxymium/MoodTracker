@@ -36,12 +36,24 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mPlaySong; /* MediaPlayer to play songs from the raw folder */
 
     private SharedPreferences mPreferences; /* API to save data (smiley state, text input etc) */
-    private String SAVED_SMILEY_STATE = ""; /* Key used to save Smiley state */
-    private String SAVED_DAY_STATE = "";
 
-    private int mThisDay; /* Check day of the year (int) */
+    private int mCurrentDate; /* Gets date of the current day (int value) */
 
-    private String mCurrentMoodText = ""; /* Get text from currentText */
+
+    private String SAVED_SMILEY_STATE = ""; /* Key used to read & save Smiley state */
+    private String SAVED_DAY_VALUE_ON_CREATE = ""; /* Key used to remember the day onCreate */
+
+    private String mCurrentMoodText = ""; /* Get text from currentMoodText */
+
+    /* Arrays to stock everything (test for later) */
+    /* First array is constant */
+    private static final String daysOfTheWeek[] = {"Yesterday", "Two days ago", "Three days ago", "Four days ago", "Five days ago", "Six days ago", "A week ago"};
+
+    /*
+    int daysOfTheWeekSavedKey[] = {SAVED_DAY_STATE_1, SAVED_DAY_STATE_2, SAVED_DAY_STATE_3, SAVED_DAY_STATE_4, SAVED_DAY_STATE_5, SAVED_DAY_STATE_6, SAVED_DAY_STATE_7};
+    String textMoodSaved[] = {SAVED_MOOD_TEXT_1, SAVED_MOOD_TEXT_2, SAVED_MOOD_TEXT_3, SAVED_MOOD_TEXT_4, SAVED_MOOD_TEXT_5, SAVED_MOOD_TEXT_6, SAVED_MOOD_TEXT_7};
+    String smileyStateColor[] = {SAVED_SMILEY_STATE_1,SAVED_SMILEY_STATE_2, SAVED_SMILEY_STATE_3, SAVED_SMILEY_STATE_4, SAVED_SMILEY_STATE_5, SAVED_SMILEY_STATE_6, SAVED_SMILEY_STATE_7}; */
+
 
 
     @Override
@@ -49,38 +61,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Identify both ImageButton by their layout's IDs with the findViewById method */
+        /* Identifies both ImageButton by their layout's IDs with the findViewById method */
         mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
         mNoteButton = (ImageButton) findViewById(R.id.mt_note_button);
 
         mPreferences = getPreferences(MODE_PRIVATE);
 
-        /* Calendar to check day */
+        /* Calendar object to get the DAY_OF_YEAR (int number) */
         Calendar calendar = Calendar.getInstance();
-        mThisDay = calendar.get(Calendar.DAY_OF_YEAR);
+        mCurrentDate = calendar.get(Calendar.DAY_OF_YEAR);
 
         VerticalViewPager vpPager = (VerticalViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new CustomPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
-        String savedState = getPreferences(MODE_PRIVATE).getString(SAVED_SMILEY_STATE, null);
+        /* SharedPreferences reading */
+        String mSmileyState = getPreferences(MODE_PRIVATE).getString(SAVED_SMILEY_STATE, null);
 
-        /* onCreate, set vpPager.setCurrentItem(1) (Happy Smiley) by default */
+        /* onCreate, stores the current day number (DAY_OF_YEAR) into the SharedPreferences */
+        // mPreferences.edit().putInt(SAVED_DAY_VALUE_ON_CREATE, mTodayDate).apply();
 
-        /* Check the value stored in the SharedPreferences API when activity is recreated.
+
+
+
+        /* onCreate, set vpPager.setCurrentItem(1) (Happy Smiley) by default
+           Check the values stored in the SharedPreferences API when activity is recreated.
            If Null (by default or when reset at midnight), set default view 「happy」 */
 
-
-        if (savedState == null) {
+        if (mSmileyState == null) {
             vpPager.setCurrentItem(3);
             mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
+            /* Save day into the Sharedpreferences if null (first time launch) */
+
         } else {  /* Cases corresponding to non-default states 「sad」= 0, 「disappointed」 = 1, 「normal」 = 2, 「happy」 = 3, 「super_happy」 = 4 */
 
-            switch (savedState) {
+            switch (mSmileyState) {
 
                 case "SAD_STATE":
                     vpPager.setCurrentItem(0);
-                    /* This is required in case the app is relaunched and state is not changed (or else, it will reset to null */
+                    /* This is required in case the app is relaunched and state is not changed (or else, it will reset to null) */
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "SAD_STATE").apply();
 
                     break;
@@ -193,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* When mHistoryButton is clicked on, starts HistoryActivity */
                 Intent historyActivity = new Intent(MainActivity.this, HistoryActivity.class);
+                /* Intent passes key value to the historyActivity */
+                historyActivity.putExtra("CurrentDayTest",  mCurrentDate);
+                historyActivity.putExtra("DaysOfTheWeekArray", daysOfTheWeek);
                 startActivity(historyActivity);
 
             }
