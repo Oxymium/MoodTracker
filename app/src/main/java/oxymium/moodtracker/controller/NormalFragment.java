@@ -10,21 +10,17 @@ import android.widget.ImageView;
 
 import oxymium.moodtracker.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class NormalFragment extends Fragment {
 
     // Store instance variables
-    private String title;
     private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static NormalFragment newInstance(int page, String title) {
+    public static NormalFragment newInstance(int page) {
         NormalFragment fragmentFirst = new NormalFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
-        args.putString("someTitle", title);
         fragmentFirst.setArguments(args);
         return fragmentFirst;
     }
@@ -34,7 +30,6 @@ public class NormalFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
-        title = getArguments().getString("someTitle");
     }
 
     @Override

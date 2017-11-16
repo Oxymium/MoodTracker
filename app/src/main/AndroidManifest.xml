@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.HistoryActivity" />
+
+        <receiver android:name=".controller.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
+
 
 </manifest>

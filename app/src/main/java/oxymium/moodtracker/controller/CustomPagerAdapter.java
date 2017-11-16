@@ -4,11 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * Created by Raspberyl on 26/10/2017.
- */
 
-//CustomPagerAdapter hérite de FragmentPagerAdapter
 public class CustomPagerAdapter extends FragmentPagerAdapter {
     // Number equals to number of smiley states (5)
     private static int NUM_SMILEYS = 5;
@@ -27,16 +23,16 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
-                return SadFragment.newInstance(0, "Page # 3");
-            case 1: // Fragment # 0 - This will show FirstFragment different title
-                return DisappointedFragment.newInstance(1, "Page # 3");
-            case 2: // Fragment # 1 - This will show SecondFragment
-                return NormalFragment.newInstance(2, "Page # 3");
-            case 3: // Fragment # 1 - This will show SecondFragment
-                return HappyFragment.newInstance(3, "Page # 2");
-            case 4: // Fragment # 1 - This will show SecondFragment
-                return SuperHappyFragment.newInstance(4, "Page # 1");
+            case 0: // Fragment # 0 - This will show SadFragment
+                return SadFragment.newInstance(0);
+            case 1: // Fragment # 1 - This will show DisappointedFragment
+                return DisappointedFragment.newInstance(1);
+            case 2: // Fragment # 2 - This will show NormalFragment
+                return NormalFragment.newInstance(2);
+            case 3: // Fragment # 3 - This will show HappyFragment
+                return HappyFragment.newInstance(3);
+            case 4: // Fragment # 4 - This will show SuperHappyFragment
+                return SuperHappyFragment.newInstance(4);
 
             default:
                 return null;
