@@ -18,6 +18,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mNoteButton; /* Bottom-left image button (expected to call a Text box to input Mood) */
     private ImageButton mHistoryButton; /* Bottom-right image button (expected to call the HistoryActivity activity) */
     private MediaPlayer mPlaySong; /* MediaPlayer to play songs from the raw folder */
+    private VerticalViewPager mVerticalViewPager;
     public SharedPreferences mPreferences; /* API to save data (smiley state, text input etc) */
+
 
     private int mCurrentDate; /* Gets date of the current day (int value) */
     private String mCurrentMoodText = ""; /* Get text from currentMoodText */
@@ -68,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         /* Identifies both ImageButton by their layout's IDs with the findViewById method */
         mHistoryButton = (ImageButton) findViewById(R.id.mt_history_button);
@@ -94,14 +99,22 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.MILLISECOND, 0);
 
 
+
         setAlarm(calendar.getTimeInMillis());
+
+        /* Daily reset */
+        // TO CHECK if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
+
+        Intent intentTest = new Intent(this, AlarmReceiver.class);
+        AlarmReceiver alarmReceiver = new AlarmReceiver();
+
 
 
 
         /* VP & adapter */
-        VerticalViewPager vpPager = (VerticalViewPager) findViewById(R.id.vpPager);
+        mVerticalViewPager = (VerticalViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new CustomPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
+        mVerticalViewPager.setAdapter(adapterViewPager);
 
         /* SharedPreferences reading */
         String mSmileyState = getPreferences(MODE_PRIVATE).getString(SAVED_SMILEY_STATE, null);
@@ -112,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
            If Null (by default or when reset at midnight), set default view 「happy」 */
 
         if (mSmileyState == null) {
-            vpPager.setCurrentItem(3);
+            mVerticalViewPager.setCurrentItem(3);
             mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
 
         } else {  /* Cases corresponding to non-default states 「sad」= 0, 「disappointed」 = 1, 「normal」 = 2, 「happy」 = 3, 「super_happy」 = 4 */
@@ -120,32 +133,32 @@ public class MainActivity extends AppCompatActivity {
             switch (mSmileyState) {
 
                 case "SAD_STATE":
-                    vpPager.setCurrentItem(0);
+                    mVerticalViewPager.setCurrentItem(0);
                     /* This is required in case the app is relaunched and state is not changed (or else, it will reset to null) */
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "SAD_STATE").apply();
 
                     break;
 
                 case "DISAPPOINTED_STATE":
-                    vpPager.setCurrentItem(1);
+                    mVerticalViewPager.setCurrentItem(1);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "DISAPPOINTED_STATE").apply();
 
                     break;
 
                 case "NORMAL_STATE":
-                    vpPager.setCurrentItem(2);
+                    mVerticalViewPager.setCurrentItem(2);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "NORMAL_STATE").apply();
 
                     break;
 
                 case "HAPPY_STATE":
-                    vpPager.setCurrentItem(3);
+                    mVerticalViewPager.setCurrentItem(3);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "HAPPY_STATE").apply();
 
                     break;
 
                 case "SUPER_HAPPY_STATE":
-                    vpPager.setCurrentItem(4);
+                    mVerticalViewPager.setCurrentItem(4);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "SUPER_HAPPY_STATE").apply();
 
                     break;
@@ -158,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* Add onPageChangeListener to the VerticalPager */
 
-        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVerticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -292,6 +305,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /* MainActivity variable */
 
+    private static MainActivity ins; {
+        ins = this;
+    }
 
+    public static MainActivity  getInstance(){
+        return ins;
+    }
+
+    public void updateTheCurrentPage(final int i) {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                VerticalViewPager mVerticalViewPager = (VerticalViewPager) findViewById(R.id.vpPager);
+                mVerticalViewPager.setCurrentItem(i);
+            }
+        });
+    }
 }
+
+
+
+
+
