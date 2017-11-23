@@ -4,9 +4,13 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/mt_button_sad_layout"
-        android:layout_width="match_parent"
+        android:id="@+id/mt_button_normal_layout"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@color/faded_red"/>
+        android:background="@color/cornflower_blue_65"
+        android:text="Text test"
+        android:gravity="left|top"
+        android:drawableRight="@drawable/ic_comment_black_48px"
+        />
 
 </LinearLayout>

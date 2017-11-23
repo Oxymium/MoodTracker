@@ -5,4 +5,10 @@ package oxymium.moodtracker.model.Views;
  */
 
 public class DailyView {
+
+   // int
+   // String
+           // Boolean (mood)
+
+
 }

@@ -7,61 +7,48 @@
     android:orientation="vertical"
     tools:context="oxymium.moodtracker.controller.HistoryActivity">
 
-    <Button
-        android:id="@+id/mt_history_button_7d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_7"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/light_sage"/>
 
-    <Button
-        android:id="@+id/mt_history_button_6d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_6"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/faded_red"
+     />
 
-    <Button
-        android:id="@+id/mt_history_button_5d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_5"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/cornflower_blue_65"/>
 
-    <Button
-        android:id="@+id/mt_history_button_4d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_4"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/warm_grey"/>
 
-    <Button
-        android:id="@+id/mt_history_button_3d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_3"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/banana_yellow"/>
 
-    <Button
-        android:id="@+id/mt_history_button_2d_ago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_2"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/cornflower_blue_65"/>
 
-    <Button
-        android:id="@+id/mt_history_button_yesterday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:gravity="left|top"
-        />
+ <TextView
+     android:id="@+id/mt_button_1"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="@color/light_sage"/>
 
 
 

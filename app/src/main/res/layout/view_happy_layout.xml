@@ -5,8 +5,12 @@
 
     <Button
         android:id="@+id/mt_button_happy_layout"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:background="@color/light_sage"/>
+        android:background="@color/light_sage"
+        android:text="Text test"
+        android:gravity="left|top"
+        android:drawableRight="@drawable/ic_comment_black_48px"
+        />
 
 </LinearLayout>

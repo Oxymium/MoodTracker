@@ -5,4 +5,5 @@ package oxymium.moodtracker.model.Views;
  */
 
 public class SuperHappyView extends DailyView {
+
 }
