@@ -7,48 +7,10 @@
     android:orientation="vertical"
     tools:context="oxymium.moodtracker.controller.HistoryActivity">
 
- <TextView
-     android:id="@+id/mt_button_7"
+ <ListView
+     android:id="@+id/mt_listview_layout"
      android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/light_sage"/>
-
- <TextView
-     android:id="@+id/mt_button_6"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/faded_red"
-     />
-
- <TextView
-     android:id="@+id/mt_button_5"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/cornflower_blue_65"/>
-
- <TextView
-     android:id="@+id/mt_button_4"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/warm_grey"/>
-
- <TextView
-     android:id="@+id/mt_button_3"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/banana_yellow"/>
-
- <TextView
-     android:id="@+id/mt_button_2"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/cornflower_blue_65"/>
-
- <TextView
-     android:id="@+id/mt_button_1"
-     android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:background="@color/light_sage"/>
+     android:layout_height="match_parent"></ListView>
 
 
 
