@@ -8,10 +8,11 @@ public class Day {
 
     public String mDayName;
     public int mMoodColor;
-    // public int mMoodSize;
+    // LATER public int mMoodSize;
     public boolean mHasMoodText;
+    // LATER public boolean mIsClickable;
 
-    public Day (String mDayName, int mMoodColor, int mMoodSize, boolean hasMoodText) {
+    public Day (String mDayName, int mMoodColor, boolean hasMoodText) {
         this.mDayName = mDayName;
         this.mMoodColor = mMoodColor;
         // this.mMoodSize = mMoodSize;

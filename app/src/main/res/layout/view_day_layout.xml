@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
-        android:id="@+id/mt_button_happy_layout"
+        android:id="@+id/mt_day_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mt_day_background"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_comment_black_48px" />
+
+
+    <ImageView
+        android:id="@+id/mt_day_background"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/light_sage"
-        android:text="Day text"
-        android:gravity="left|top"
-        android:drawableRight="@drawable/ic_comment_black_48px"
-        android:drawableEnd="@drawable/ic_comment_black_48px"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/light_sage" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/mt_day_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="left|top"
+        android:text="Day test" />
+
+
+</RelativeLayout>

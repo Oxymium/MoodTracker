@@ -44,13 +44,13 @@ public class DayAdapter extends ArrayAdapter<Day> {
 
         // Here to add layouts specifics
 
-        Button dayNameText = (Button) convertView.findViewById(R.id.mt_button_happy_layout);
-        Button backgroundColor = (Button) convertView.findViewById(R.id.mt_button_happy_layout);
-        Button moodComment = (Button) convertView.findViewById(R.id.mt_button_happy_layout);
+        TextView dayNameText = (TextView) convertView.findViewById(R.id.mt_day_textview);
+        ImageView backgroundColor = (ImageView) convertView.findViewById(R.id.mt_day_background);
+        Button moodComment = (Button) convertView.findViewById(R.id.mt_day_button);
 
         dayNameText.setText(days.mDayName);
         backgroundColor.setBackgroundResource(days.mMoodColor);
-        moodComment.setVisibility(View.VISIBLE);
+        moodComment.setClickable(days.mHasMoodText);
 
         return convertView;
 
