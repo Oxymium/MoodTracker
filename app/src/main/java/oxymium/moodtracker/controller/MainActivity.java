@@ -37,17 +37,23 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MyActivity"; // LOG TEST
 
+    private static final String SAVED_SMILEY_STATE = "SAVED_SMILEY_STATE"; /* Key used to read & save Smiley state */
+
+
     /* Day stored variables */
     private Calendar mCalendar;
 
     private int mCurrentDay; // Daily day
-    private int mCurrentDay2; // Comparaison
+    public static final String CURRENT_DAY = "CURRENT_DAY";
 
-    private String LAST_DAY_SAVED = "LAST_DAY_SAVED";
+    private int mDayChecker;
+
+    private int mPreviousRecordedDay; // Last saved day
+    public static final String PREVIOUS_RECORDED_DAY = "PREVIOUS_RECORDED_DAY";
+
 
 
     private String mCurrentMoodText = ""; /* Get text from currentMoodText */
-    private String SAVED_SMILEY_STATE = ""; /* Key used to read & save Smiley state */
     private int MOOD_COLOR;
     private String SAVED_TEXT_MOOD = "";
     /* 7 days on the week - all variables */
@@ -91,7 +97,16 @@ public class MainActivity extends AppCompatActivity {
         mCalendar = Calendar.getInstance();
         mCurrentDay = mCalendar.get(Calendar.DAY_OF_YEAR); // current day
 
-        // int mLastDay = getPreferences(MODE_PRIVATE).getInt(LAST_DAY_SAVED, 0);
+        mDayChecker = getPreferences(MODE_PRIVATE).getInt(PREVIOUS_RECORDED_DAY,  -1);
+
+
+
+        Log.d(TAG, "Value: " + Float.toString(mCurrentDay)); // Helper
+        Log.d(TAG, "Value: " + Float.toString(mDayChecker));
+
+
+
+
 
         //if (mCurrentDay2 != mCurrentDay && mLastDay != 0)
         //mCurrentDay2 = mCalendar.get(Calendar.DAY_OF_YEAR);
@@ -102,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
            Check the values stored in the SharedPreferences API when activity is recreated.
            If Null (by default or when new day), set default view 「happy」 */
 
-        if (mSmileyState == null) /* || mCurrentDay != mCurrentDay2) */  {
+        if (mSmileyState == null || mCurrentDay != mDayChecker || mDayChecker == -1) {
+            mPreferences.edit().putInt(PREVIOUS_RECORDED_DAY, mCurrentDay).apply();
             mVerticalViewPager.setCurrentItem(3);
             mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
 
@@ -259,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        ///////////////////////////////////////////////////
         Log.d(TAG, "Test state : " + MOOD_COLOR);
 
 

@@ -20,7 +20,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-       // mYesterday = getIntent().getIntExtra("Yesterday", 0);
+       //mYesterday = getIntent().getIntExtra("Yesterday", 0);
        //m2DaysAgo = getIntent().getIntExtra("TwoDaysAgo", 0);
        //m3DaysAgo = getIntent().getIntExtra("ThreeDaysAgo", 0);
        //m4DaysAgo = getIntent().getIntExtra("FourDaysAgo", 0);
