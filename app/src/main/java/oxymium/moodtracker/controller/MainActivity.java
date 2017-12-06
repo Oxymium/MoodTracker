@@ -44,19 +44,37 @@ public class MainActivity extends AppCompatActivity {
     private int mDayChecker;
 
     private int mPreviousRecordedDay; // Last saved day
-    public static final String PREVIOUS_RECORDED_DAY = "PREVIOUS_RECORDED_DAY";
+    private static final String PREVIOUS_RECORDED_DAY = "PREVIOUS_RECORDED_DAY";
 
-    private String mCurrentMoodComment = ""; /* Get text from currentMoodText */
+    private static final String DEFAULT_COMMENT_VALUE = "";
+
+    /* 7 days on the week history - all variables & keys */
+
     private int mCurrentMoodColor;
-    private static final String SAVED_COMMENT_MOOD = "SAVED_COMMENT_MOOD";
-
-    /* 7 days on the week - all variables */
-
-    private int YESTERDAY_MOOD_COLOR, TWO_DAYS_AGO_MOOD_COLOR, THREE_DAYS_AGO_MOOD_COLOR, FOUR_DAYS_AGO_MOOD_COLOR, FIVE_DAYS_AGO_MOOD_COLOR, SIX_DAYS_AGO_MOOD_COLOR, SEVEN_DAYS_AGO_MOOD_COLOR;
-    private String YESTERDAY_MOOD_COMMENT, TWO_DAYS_AGO_MOOD_COMMENT, THREE_DAYS_AGO_MOOD_COMMENT, FOUR_DAYS_AGO_MOOD_COMMENT, FIVE_DAYS_AGO_MOOD_COMMENT, SIX_DAYS_AGO_MOOD_COMMENT, SEVEN_DAYS_AGO_MOOD_COMMENT;
+    private static final String CURRENT_MOOD_COLOR = "CURRENT_MOOD_COLOR";
+    private String mCurrentMoodComment;
+    private static final String CURRENT_MOOD_COMMENT = "CURRENT_MOOD_COMMENT";
+    private static final String CURRENT_MOOD_COMMENT_INIT = "CURRENT_MOOD_COMMENT_INIT";
 
 
+    private int mMainYesterdayColor, mMain2DaysAgoColor, mMain3DaysAgoColor, mMain4DaysAgoColor, mMain5DaysAgoColor, mMain6DaysAgoColor, mMain7DaysAgoColor;
+    private String mMainYesterdayComment, mMain2DaysAgoComment, mMain3DaysAgoComment, mMain4DaysAgoComment, mMain5DaysAgoComment, mMain6DaysAgoComment, mMain7DaysAgoComment;
 
+    private static final String YESTERDAY_MOOD_COLOR = "YESTERDAY_MOOD_COLOR";
+    private static final String TWO_DAYS_AGO_MOOD_COLOR = "TWO_DAYS_AGO_MOOD_COLOR";
+    private static final String THREE_DAYS_AGO_MOOD_COLOR = "THREE_DAYS_AGO_MOOD_COLOR";
+    private static final String FOUR_DAYS_AGO_MOOD_COLOR = "FOUR_DAYS_AGO_MOOD_COLOR";
+    private static final String FIVE_DAYS_AGO_MOOD_COLOR = "FIVE_DAYS_AGO_MOOD_COLOR";
+    private static final String SIX_DAYS_AGO_MOOD_COLOR = "SIX_DAYS_AGO_MOOD_COLOR";
+    private static final String SEVEN_DAYS_AGO_MOOD_COLOR = "SEVEN_DAYS_AGO_MOOD_COLOR";
+
+    private static final String YESTERDAY_MOOD_COMMENT = "YESTERDAY_MOOD_COMMENT";
+    private static final String TWO_DAYS_AGO_MOOD_COMMENT = "TWO_DAYS_AGO_MOOD_COMMENT";
+    private static final String THREE_DAYS_AGO_MOOD_COMMENT = "THREE_DAYS_AGO_MOOD_COMMENT";
+    private static final String FOUR_DAYS_AGO_MOOD_COMMENT = "FOUR_DAYS_AGO_MOOD_COMMENT";
+    private static final String FIVE_DAYS_AGO_MOOD_COMMENT = "FIVE_DAYS_AGO_MOOD_COMMENT";
+    private static final String SIX_DAYS_AGO_MOOD_COMMENT = "SIX_DAYS_AGO_MOOD_COMMENT";
+    private static final String SEVEN_DAYS_AGO_MOOD_COMMENT = "SEVEN_DAYS_AGO_MOOD_COMMENT";
 
 
     @Override
@@ -80,12 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
         /* Date */ mCalendar = Calendar.getInstance();
         mCurrentDay = mCalendar.get(Calendar.DAY_OF_YEAR); // current day
+        mPreferences.edit().putInt(CURRENT_DAY, mCurrentDay).apply();
 
         mDayChecker = getPreferences(MODE_PRIVATE).getInt(PREVIOUS_RECORDED_DAY,  -1);
-
-        Log.d(TAG, "Value: " + Float.toString(mCurrentDay)); // Helper
-        Log.d(TAG, "Value: " + Float.toString(mDayChecker));
-
 
         //if (mCurrentDay2 != mCurrentDay && mLastDay != 0)
         //mCurrentDay2 = mCalendar.get(Calendar.DAY_OF_YEAR);
@@ -97,18 +112,68 @@ public class MainActivity extends AppCompatActivity {
            If Null (by default or when new day), set default view 「happy」 */
 
         if (mSmileyState == null || mCurrentDay != mDayChecker || mDayChecker == -1) {
+
+
+            // Day 7
+            mPreferences.edit().putString(SEVEN_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(SIX_DAYS_AGO_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(SEVEN_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(SIX_DAYS_AGO_MOOD_COLOR, 0)).apply();
+
+            // Day 6
+            mPreferences.edit().putString(SIX_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(FIVE_DAYS_AGO_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(SIX_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(FIVE_DAYS_AGO_MOOD_COLOR, 0)).apply();
+
+            // Day 5
+            mPreferences.edit().putString(FIVE_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(FOUR_DAYS_AGO_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(FIVE_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(FOUR_DAYS_AGO_MOOD_COLOR, 0)).apply();
+
+            // Day 4
+            mPreferences.edit().putString(FOUR_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(THREE_DAYS_AGO_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(FOUR_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(THREE_DAYS_AGO_MOOD_COLOR, 0)).apply();
+
+            // Day 3
+            mPreferences.edit().putString(THREE_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(TWO_DAYS_AGO_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(THREE_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(TWO_DAYS_AGO_MOOD_COLOR, 0)).apply();
+
+            // Day 2
+            mPreferences.edit().putString(TWO_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(YESTERDAY_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(TWO_DAYS_AGO_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(YESTERDAY_MOOD_COLOR, 0)).apply();
+
+            // Day 1
+            mPreferences.edit().putString(YESTERDAY_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(CURRENT_MOOD_COMMENT, null)).apply();
+            mPreferences.edit().putInt(YESTERDAY_MOOD_COLOR, getPreferences(MODE_PRIVATE).getInt(CURRENT_MOOD_COLOR, 0)).apply();
+
+            mPreferences.edit().putString(CURRENT_MOOD_COMMENT, null).apply();
+
             mPreferences.edit().putInt(PREVIOUS_RECORDED_DAY, mCurrentDay).apply();
+
+
+            mMain7DaysAgoComment = getPreferences(MODE_PRIVATE).getString(SEVEN_DAYS_AGO_MOOD_COMMENT, null);
+            mMain6DaysAgoComment = getPreferences(MODE_PRIVATE).getString(SIX_DAYS_AGO_MOOD_COMMENT, null);
+            mMain5DaysAgoComment = getPreferences(MODE_PRIVATE).getString(FIVE_DAYS_AGO_MOOD_COMMENT, null);
+            mMain4DaysAgoComment = getPreferences(MODE_PRIVATE).getString(FOUR_DAYS_AGO_MOOD_COMMENT, null);
+            mMain3DaysAgoComment = getPreferences(MODE_PRIVATE).getString(THREE_DAYS_AGO_MOOD_COMMENT, null);
+            mMain2DaysAgoComment = getPreferences(MODE_PRIVATE).getString(TWO_DAYS_AGO_MOOD_COMMENT, null);
+            mMainYesterdayComment = getPreferences(MODE_PRIVATE).getString(YESTERDAY_MOOD_COMMENT, null);
+
+            mMain7DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(SEVEN_DAYS_AGO_MOOD_COLOR, 0);
+            mMain6DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(SIX_DAYS_AGO_MOOD_COLOR, 0);
+            mMain5DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(FIVE_DAYS_AGO_MOOD_COLOR, 0);
+            mMain4DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(FOUR_DAYS_AGO_MOOD_COLOR, 0);
+            mMain3DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(THREE_DAYS_AGO_MOOD_COLOR, 0);
+            mMain2DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(TWO_DAYS_AGO_MOOD_COLOR, 0);
+            mMainYesterdayColor = getPreferences(MODE_PRIVATE).getInt(YESTERDAY_MOOD_COLOR, 0);
+
+
+            mPreferences.edit().putString(SAVED_SMILEY_STATE, "HAPPY_STATE").apply();
+            mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.light_sage).apply();
+
             mVerticalViewPager.setCurrentItem(3);
             mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
 
-            if (mCurrentDay != mDayChecker || mDayChecker == -1) {
-
-                YESTERDAY_MOOD_COLOR = mCurrentMoodColor;
-                YESTERDAY_MOOD_COMMENT = mCurrentMoodComment;
-            }
+    }
 
 
-        } else {  /* Cases corresponding to non-default states 「sad」= 0, 「disappointed」 = 1, 「normal」 = 2, 「happy」 = 3, 「super_happy」 = 4 */
+         else{  /* Cases corresponding to non-default states 「sad」= 0, 「disappointed」 = 1, 「normal」 = 2, 「happy」 = 3, 「super_happy」 = 4 */
 
             switch (mSmileyState) {
 
@@ -116,37 +181,35 @@ public class MainActivity extends AppCompatActivity {
                     mVerticalViewPager.setCurrentItem(0);
                     /* This is required in case the app is relaunched and state is not changed (or else, it will reset to null) */
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "SAD_STATE").apply();
-                    mCurrentMoodColor = R.color.faded_red;
+                    mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.faded_red).apply();
 
                     break;
 
                 case "DISAPPOINTED_STATE":
                     mVerticalViewPager.setCurrentItem(1);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "DISAPPOINTED_STATE").apply();
-                    mCurrentMoodColor = R.color.warm_grey;
+                    mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.warm_grey).apply();
 
                     break;
 
                 case "NORMAL_STATE":
                     mVerticalViewPager.setCurrentItem(2);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "NORMAL_STATE").apply();
-                    mCurrentMoodColor = R.color.cornflower_blue_65;
+                    mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.cornflower_blue_65).apply();
 
                     break;
 
                 case "HAPPY_STATE":
                     mVerticalViewPager.setCurrentItem(3);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "HAPPY_STATE").apply();
-                    mCurrentMoodColor = R.color.light_sage;
-
-
+                    mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.light_sage).apply();
 
                     break;
 
                 case "SUPER_HAPPY_STATE":
                     mVerticalViewPager.setCurrentItem(4);
                     mPreferences.edit().putString(SAVED_SMILEY_STATE, "SUPER_HAPPY_STATE").apply();
-                    mCurrentMoodColor = R.color.banana_yellow;
+                    mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.banana_yellow).apply();
 
                     break;
 
@@ -174,55 +237,50 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
 
                         mPreferences.edit().putString(SAVED_SMILEY_STATE, "SAD_STATE").apply();
+                        mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.faded_red).apply();
 
                         mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.sad_song);
                         mPlaySong.start();
-
-                        mCurrentMoodColor = R.color.faded_red;
 
                         break;
 
                     case 1:
 
                         mPreferences.edit().putString(SAVED_SMILEY_STATE, "DISAPPOINTED_STATE").apply();
+                        mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.warm_grey).apply();
 
                         mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.disappointed_song);
                         mPlaySong.start();
-
-                        mCurrentMoodColor = R.color.warm_grey;
 
                         break;
 
                     case 2:
 
                         mPreferences.edit().putString(SAVED_SMILEY_STATE, "NORMAL_STATE").apply();
+                        mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.cornflower_blue_65).apply();
 
                         mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.normal_song);
                         mPlaySong.start();
-
-                        mCurrentMoodColor = R.color.cornflower_blue_65;
 
                         break;
 
                     case 3:
 
                         mPreferences.edit().putString(SAVED_SMILEY_STATE, "HAPPY_STATE").apply();
+                        mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.light_sage).apply();
 
                         mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.happy_song);
                         mPlaySong.start();
-
-                        mCurrentMoodColor = R.color.light_sage;
 
                         break;
 
                     case 4:
 
                         mPreferences.edit().putString(SAVED_SMILEY_STATE, "SUPER_HAPPY_STATE").apply();
+                        mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.banana_yellow).apply();
 
                         mPlaySong = MediaPlayer.create(getApplicationContext(), R.raw.super_happy_song);
                         mPlaySong.start();
-
-                        mCurrentMoodColor = R.color.banana_yellow;
 
                         break;
 
@@ -238,7 +296,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         /* Add onClickListener to mHistoryButton */
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,26 +304,27 @@ public class MainActivity extends AppCompatActivity {
                 Intent historyActivity = new Intent(MainActivity.this, HistoryActivity.class);
                 /* Intent passes key value to the historyActivity */
 
-                historyActivity.putExtra("YESTERDAY_COLOR", YESTERDAY_MOOD_COLOR);
-                historyActivity.putExtra("YESTERDAY_COMMENT", YESTERDAY_MOOD_COMMENT);
+                historyActivity.putExtra("YESTERDAY_COLOR", mMainYesterdayColor);
+                historyActivity.putExtra("YESTERDAY_COMMENT", mMainYesterdayComment);
 
-                historyActivity.putExtra("TWO_DAY_SAGO_COLOR", TWO_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("TWO_DAYS_AGO_COMMENT", TWO_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("TWO_DAYS_AGO_COLOR", mMain2DaysAgoColor);
+                historyActivity.putExtra("TWO_DAYS_AGO_COMMENT", mMain2DaysAgoComment);
 
-                historyActivity.putExtra("THREE_DAYS_AGO_COLOR", THREE_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("THREE_DAYS_AGO_COMMENT", THREE_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("THREE_DAYS_AGO_COLOR", mMain3DaysAgoColor);
+                historyActivity.putExtra("THREE_DAYS_AGO_COMMENT", mMain3DaysAgoComment);
 
-                historyActivity.putExtra("FOUR_DAYS_AGO_COLOR", FOUR_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("FOUR_DAYS_AGO_COMMENT", FOUR_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("FOUR_DAYS_AGO_COLOR", mMain4DaysAgoColor);
+                historyActivity.putExtra("FOUR_DAYS_AGO_COMMENT", mMain4DaysAgoComment);
 
-                historyActivity.putExtra("FIVE_DAYS_AGO_COLOR", FIVE_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("FIVE_DAYS_AGO_COMMENT", FIVE_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("FIVE_DAYS_AGO_COLOR", mMain5DaysAgoColor);
+                historyActivity.putExtra("FIVE_DAYS_AGO_COMMENT", mMain5DaysAgoComment);
 
-                historyActivity.putExtra("SIX_DAYS_AGO_COLOR", SIX_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("SIX_DAYS_AGO_COMMENT", SIX_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("SIX_DAYS_AGO_COLOR", mMain6DaysAgoColor);
+                historyActivity.putExtra("SIX_DAYS_AGO_COMMENT", mMain6DaysAgoComment);
 
-                historyActivity.putExtra("SEVEN_DAYS_AGO_COLOR", SEVEN_DAYS_AGO_MOOD_COLOR);
-                historyActivity.putExtra("SEVEN_DAYS_AGO_COMMENT", SEVEN_DAYS_AGO_MOOD_COMMENT);
+                historyActivity.putExtra("SEVEN_DAYS_AGO_COLOR", mMain7DaysAgoColor);
+                historyActivity.putExtra("SEVEN_DAYS_AGO_COMMENT", mMain7DaysAgoComment);
+
 
 
                 startActivity(historyActivity);
@@ -294,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mCurrentMoodComment = input.getText().toString();
-                        mPreferences.edit().putString(SAVED_COMMENT_MOOD, mCurrentMoodComment).apply();
+                        mPreferences.edit().putString(CURRENT_MOOD_COMMENT, mCurrentMoodComment).apply();
 
                     }
                 });
@@ -312,6 +370,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+        Log.d(TAG, "Value: " + Float.toString(mCurrentDay)); // Helper
+        Log.d(TAG, "Value: " + Float.toString(mDayChecker));
+
 
 
     }

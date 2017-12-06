@@ -7,21 +7,21 @@
 
     <Button
         android:id="@+id/mt_day_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mt_day_background"
+        android:layout_width="35dp"
+        android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_below="@+id/mt_day_textview"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:adjustViewBounds="true"
         android:background="@android:color/transparent"
-        android:drawableRight="@drawable/ic_comment_black_48px" />
-
+        android:drawableTop="@drawable/ic_comment_black_48px" />
 
     <ImageView
         android:id="@+id/mt_day_background"
         android:layout_width="match_parent"
+        android:contentDescription="@string/mt_dayview_background_view"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -33,9 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:gravity="left|top"
-        android:text="Day test" />
+        android:gravity="start|top"
+        android:text="@string/dayname" />
 
 
 </RelativeLayout>

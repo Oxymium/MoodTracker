@@ -9,23 +9,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import oxymium.moodtracker.R;
+import oxymium.moodtracker.model.Day;
 
-/**
- * Created by Raspberyl on 24/11/2017.
- */
 
 public class DayAdapter extends ArrayAdapter<Day> {
 
     Context context;
     int resource;
     ArrayList<Day> day = null;
+
 
     public DayAdapter(@NonNull Context context, int resource, ArrayList<Day> day) {
         super(context, resource, day);
@@ -37,25 +35,40 @@ public class DayAdapter extends ArrayAdapter<Day> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Day days = day.get(position);
+
+        final Day days = day.get(position);
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.view_day_layout, parent, false);
         }
 
-        // Here to add layouts specifics
-
+        /* Layout specifics */
         TextView dayNameText = (TextView) convertView.findViewById(R.id.mt_day_textview);
         ImageView backgroundColor = (ImageView) convertView.findViewById(R.id.mt_day_background);
         Button moodComment = (Button) convertView.findViewById(R.id.mt_day_button);
 
         dayNameText.setText(days.mDayName);
         backgroundColor.setBackgroundResource(days.mMoodColor);
-        moodComment.setClickable(days.mHasMoodText);
+
+        moodComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SingleToast.show(context, days.mMoodText, Toast.LENGTH_LONG);
+            }
+        });
+
+        if (days.mMoodText == null || days.mMoodText.trim().isEmpty()) {
+            moodComment.setVisibility(View.GONE);  /* If comment is empty, disable button */
+        }
 
         return convertView;
 
 
     }
 
+
+
 }
+
+
 
