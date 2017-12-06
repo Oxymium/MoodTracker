@@ -20,10 +20,9 @@ import oxymium.moodtracker.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentPagerAdapter adapterViewPager;
-
     /* Variables init */
 
+    private FragmentPagerAdapter adapterViewPager;
     private ConstraintLayout mMainLayout; /* Main layout frame */
     private ImageButton mNoteButton; /* Bottom-left image button (expected to call a Text box to input Mood) */
     private ImageButton mHistoryButton; /* Bottom-right image button (expected to call the HistoryActivity activity) */
@@ -40,22 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCurrentDay; /* Current day of the year */
     public static final String CURRENT_DAY = "CURRENT_DAY";
-
     private int mDayChecker;
-
-    private int mPreviousRecordedDay; // Last saved day
     private static final String PREVIOUS_RECORDED_DAY = "PREVIOUS_RECORDED_DAY";
-
-    private static final String DEFAULT_COMMENT_VALUE = "";
 
     /* 7 days on the week history - all variables & keys */
 
-    private int mCurrentMoodColor;
     private static final String CURRENT_MOOD_COLOR = "CURRENT_MOOD_COLOR";
     private String mCurrentMoodComment;
     private static final String CURRENT_MOOD_COMMENT = "CURRENT_MOOD_COMMENT";
-    private static final String CURRENT_MOOD_COMMENT_INIT = "CURRENT_MOOD_COMMENT_INIT";
-
 
     private int mMainYesterdayColor, mMain2DaysAgoColor, mMain3DaysAgoColor, mMain4DaysAgoColor, mMain5DaysAgoColor, mMain6DaysAgoColor, mMain7DaysAgoColor;
     private String mMainYesterdayComment, mMain2DaysAgoComment, mMain3DaysAgoComment, mMain4DaysAgoComment, mMain5DaysAgoComment, mMain6DaysAgoComment, mMain7DaysAgoComment;
@@ -88,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         mPreferences = getPreferences(MODE_PRIVATE);
 
+           /* Date */ mCalendar = Calendar.getInstance();
+        mCurrentDay = mCalendar.get(Calendar.DAY_OF_YEAR); // current day
+        mPreferences.edit().putInt(CURRENT_DAY, mCurrentDay).apply();
+        mDayChecker = getPreferences(MODE_PRIVATE).getInt(PREVIOUS_RECORDED_DAY,  -1);
+
         /* VP & adapter */
         mVerticalViewPager = (VerticalViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new CustomPagerAdapter(getSupportFragmentManager());
@@ -96,11 +92,6 @@ public class MainActivity extends AppCompatActivity {
         /* SharedPreferences reading */
         String mSmileyState = getPreferences(MODE_PRIVATE).getString(SAVED_SMILEY_STATE, null);
 
-        /* Date */ mCalendar = Calendar.getInstance();
-        mCurrentDay = mCalendar.get(Calendar.DAY_OF_YEAR); // current day
-        mPreferences.edit().putInt(CURRENT_DAY, mCurrentDay).apply();
-
-        mDayChecker = getPreferences(MODE_PRIVATE).getInt(PREVIOUS_RECORDED_DAY,  -1);
 
         //if (mCurrentDay2 != mCurrentDay && mLastDay != 0)
         //mCurrentDay2 = mCalendar.get(Calendar.DAY_OF_YEAR);
@@ -146,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences.edit().putInt(PREVIOUS_RECORDED_DAY, mCurrentDay).apply();
 
-
             mMain7DaysAgoComment = getPreferences(MODE_PRIVATE).getString(SEVEN_DAYS_AGO_MOOD_COMMENT, null);
             mMain6DaysAgoComment = getPreferences(MODE_PRIVATE).getString(SIX_DAYS_AGO_MOOD_COMMENT, null);
             mMain5DaysAgoComment = getPreferences(MODE_PRIVATE).getString(FIVE_DAYS_AGO_MOOD_COMMENT, null);
@@ -162,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
             mMain3DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(THREE_DAYS_AGO_MOOD_COLOR, 0);
             mMain2DaysAgoColor = getPreferences(MODE_PRIVATE).getInt(TWO_DAYS_AGO_MOOD_COLOR, 0);
             mMainYesterdayColor = getPreferences(MODE_PRIVATE).getInt(YESTERDAY_MOOD_COLOR, 0);
-
 
             mPreferences.edit().putString(SAVED_SMILEY_STATE, "HAPPY_STATE").apply();
             mPreferences.edit().putInt(CURRENT_MOOD_COLOR, R.color.light_sage).apply();
@@ -336,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
         mNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* When mHistoryButton is clicked on, starts HistoryActivity */
+                /* When mHistoryButton is clicked on, should display an AlertDialog box */
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Describe your current mood!");
@@ -364,6 +353,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 builder.show();
+
+
 
 
             }
