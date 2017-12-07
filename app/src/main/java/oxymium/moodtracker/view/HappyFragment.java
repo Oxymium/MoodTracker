@@ -1,4 +1,4 @@
-package oxymium.moodtracker.controller;
+package oxymium.moodtracker.view;
 
 
 import android.os.Bundle;
@@ -6,19 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import oxymium.moodtracker.R;
 
 
-public class SuperHappyFragment extends Fragment {
+public class HappyFragment extends Fragment {
 
     // Store instance variables
     private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static SuperHappyFragment newInstance(int page) {
-        SuperHappyFragment fragmentFirst = new SuperHappyFragment();
+    public static HappyFragment newInstance(int page) {
+       HappyFragment fragmentFirst = new HappyFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         fragmentFirst.setArguments(args);
@@ -35,9 +34,9 @@ public class SuperHappyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vSuperHappySmileyLayout = inflater.inflate(R.layout.fragment_super_happy_layout, container, false);
+        View vHappySmileyLayout = inflater.inflate(R.layout.fragment_happy_layout, container, false);
 
-        return vSuperHappySmileyLayout;
+        return vHappySmileyLayout;
     }
 
 }

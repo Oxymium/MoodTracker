@@ -9,7 +9,7 @@
     >
 
 
-    <oxymium.moodtracker.controller.VerticalViewPager
+    <oxymium.moodtracker.model.VerticalViewPager
 
         android:id="@+id/vpPager"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteY="-13dp"
         tools:layout_editor_absoluteX="46dp">
 
-    </oxymium.moodtracker.controller.VerticalViewPager>
+    </oxymium.moodtracker.model.VerticalViewPager>
 
     <ImageButton
         android:id="@+id/mt_note_button"

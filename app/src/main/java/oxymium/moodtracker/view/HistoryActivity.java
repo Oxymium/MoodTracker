@@ -1,4 +1,4 @@
-package oxymium.moodtracker.controller;
+package oxymium.moodtracker.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import oxymium.moodtracker.R;
 import oxymium.moodtracker.model.Day;
+import oxymium.moodtracker.model.DayAdapter;
 
 public class HistoryActivity extends AppCompatActivity {
 

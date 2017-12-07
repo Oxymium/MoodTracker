@@ -1,4 +1,4 @@
-package oxymium.moodtracker.controller;
+package oxymium.moodtracker.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import oxymium.moodtracker.R;
+import oxymium.moodtracker.controller.SingleToast;
 import oxymium.moodtracker.model.Day;
 
 

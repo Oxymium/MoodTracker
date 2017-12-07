@@ -1,4 +1,4 @@
-package oxymium.moodtracker.controller;
+package oxymium.moodtracker.model;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

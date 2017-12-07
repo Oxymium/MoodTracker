@@ -1,8 +1,14 @@
-package oxymium.moodtracker.controller;
+package oxymium.moodtracker.model;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import oxymium.moodtracker.view.DisappointedFragment;
+import oxymium.moodtracker.view.HappyFragment;
+import oxymium.moodtracker.view.NormalFragment;
+import oxymium.moodtracker.view.SadFragment;
+import oxymium.moodtracker.view.SuperHappyFragment;
 
 
 public class CustomPagerAdapter extends FragmentPagerAdapter {
