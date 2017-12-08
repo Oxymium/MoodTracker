@@ -19,7 +19,6 @@ import java.util.Calendar;
 import oxymium.moodtracker.R;
 import oxymium.moodtracker.model.CustomPagerAdapter;
 import oxymium.moodtracker.model.VerticalViewPager;
-import oxymium.moodtracker.view.HistoryActivity;
 
 public class MainActivity extends AppCompatActivity {
 

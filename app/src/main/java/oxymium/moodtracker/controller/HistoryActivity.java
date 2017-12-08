@@ -1,4 +1,4 @@
-package oxymium.moodtracker.view;
+package oxymium.moodtracker.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,11 +60,11 @@ public class HistoryActivity extends AppCompatActivity {
 
         mHistoryListView = (ListView) findViewById(R.id.mt_listview_layout);
 
-        if (mActivityYesterdayComment == null && mActivityYesterdayColor == 0) { /* Set default view when no mood to display */
+        /* if (mActivityYesterdayComment == null && mActivityYesterdayColor == 0) {  Set default view when no mood to display
 
             setContentView(R.layout.empty_layout);
 
-        } else {
+        } else { */
 
             ArrayList<Day> days = new ArrayList<>();
             Day sevenDaysAgo = new Day(mSevenDaysAgo, mActivity7DaysAgoColor, mActivity7DaysAgoComment);
@@ -99,7 +99,6 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
-}
 
 
 

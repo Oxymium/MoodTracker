@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,7 @@ public class DayAdapter extends ArrayAdapter<Day> {
         TextView dayNameText = (TextView) convertView.findViewById(R.id.mt_day_textview);
         ImageView backgroundColor = (ImageView) convertView.findViewById(R.id.mt_day_background);
         Button moodComment = (Button) convertView.findViewById(R.id.mt_day_button);
+        RelativeLayout mRelativeLayout = (RelativeLayout) convertView.findViewById(R.id.mt_view_relative_layout);
 
         dayNameText.setText(days.mDayName);
         backgroundColor.setBackgroundResource(days.mMoodColor);
@@ -62,14 +65,37 @@ public class DayAdapter extends ArrayAdapter<Day> {
             moodComment.setVisibility(View.GONE);  /* If comment is empty, disable button */
         }
 
+        if (days.mMoodColor == R.color.faded_red) {
+            mRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(100, LinearLayout.LayoutParams.FILL_PARENT));
+        }
+
+        if (days.mMoodColor == R.color.warm_grey) {
+            mRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(200, LinearLayout.LayoutParams.FILL_PARENT));
+
+        }
+
+        if (days.mMoodColor == R.color.cornflower_blue_65) {
+            mRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(300, LinearLayout.LayoutParams.FILL_PARENT));
+
+
+        }
+
+        if (days.mMoodColor== R.color.light_sage){
+
+            mRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(350, LinearLayout.LayoutParams.FILL_PARENT));
+
+
+        }
+
+
+
         return convertView;
 
 
     }
 
-
-
 }
+
 
 
 

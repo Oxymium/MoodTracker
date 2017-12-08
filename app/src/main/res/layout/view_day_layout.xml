@@ -2,7 +2,8 @@
 <RelativeLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/mt_view_relative_layout">
 
 
     <Button
@@ -12,8 +13,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/mt_day_textview"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/ic_comment_black_48px" />
@@ -32,9 +33,9 @@
         android:id="@+id/mt_day_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:gravity="start|top"
         android:text="@string/dayname" />
 

@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="oxymium.moodtracker.view.HistoryActivity">
+    tools:context="oxymium.moodtracker.controller.HistoryActivity">
 
  <ListView
      android:id="@+id/mt_listview_layout"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"></ListView>
-
+     android:layout_height="match_parent"
+     android:divider="@drawable/list_divider"
+     android:dividerHeight="0dp">
+ </ListView>
 
 
 </LinearLayout>
