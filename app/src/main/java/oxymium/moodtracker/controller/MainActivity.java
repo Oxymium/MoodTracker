@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String SIX_DAYS_AGO_MOOD_COMMENT = "SIX_DAYS_AGO_MOOD_COMMENT";
     private static final String SEVEN_DAYS_AGO_MOOD_COMMENT = "SEVEN_DAYS_AGO_MOOD_COMMENT";
 
+    /* Screen size */
+    public int mScreenWidth;
+    public static final String SCREEN_WIDTH = "SCREEN_WIDTH";
+
+    private static final String JAMBON = "JAMBON";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences = getPreferences(MODE_PRIVATE);
 
-           /* Date */
+        /* Date */
             mCalendar = Calendar.getInstance();
             mCurrentDay = mCalendar.get(Calendar.DAY_OF_YEAR); // current day
             mPreferences.edit().putInt(CURRENT_DAY, mCurrentDay).apply();
@@ -94,6 +100,16 @@ public class MainActivity extends AppCompatActivity {
 
         /* SharedPreferences reading */
             String mSmileyState = getPreferences(MODE_PRIVATE).getString(SAVED_SMILEY_STATE, null);
+
+        /* ScreenWidth in pixel */
+            mScreenWidth = getResources().getDisplayMetrics().widthPixels;
+            System.out.println("MainActivity::SCREENVALUE = " + mScreenWidth);
+            SharedPreferencesUtils.saveInt(MainActivity.this, SCREEN_WIDTH, mScreenWidth);
+                    mPreferences.edit().putInt(SCREEN_WIDTH, mScreenWidth).apply();
+
+
+           SharedPreferencesUtils.saveString(MainActivity.this, JAMBON, "TEST");
+
 
 
             //if (mCurrentDay2 != mCurrentDay && mLastDay != 0)

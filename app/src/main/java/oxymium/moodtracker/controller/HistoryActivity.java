@@ -60,11 +60,11 @@ public class HistoryActivity extends AppCompatActivity {
 
         mHistoryListView = (ListView) findViewById(R.id.mt_listview_layout);
 
-        /* if (mActivityYesterdayComment == null && mActivityYesterdayColor == 0) {  Set default view when no mood to display
+        if (mActivityYesterdayComment == null && mActivityYesterdayColor == 0) {  /* Set default view when no mood to display */
 
             setContentView(R.layout.empty_layout);
 
-        } else { */
+        } else {
 
             ArrayList<Day> days = new ArrayList<>();
             Day sevenDaysAgo = new Day(mSevenDaysAgo, mActivity7DaysAgoColor, mActivity7DaysAgoComment);
@@ -78,17 +78,18 @@ public class HistoryActivity extends AppCompatActivity {
         /* Init all views */
 
             if (mActivity7DaysAgoColor != 0)
-            days.add(sevenDaysAgo);
+                days.add(sevenDaysAgo);
             if (mActivity6DaysAgoColor != 0)
-            days.add(sixDaysAgo);
+                days.add(sixDaysAgo);
             if (mActivity5DaysAgoColor != 0)
-            days.add(fiveDaysAgo);
+                days.add(fiveDaysAgo);
             if (mActivity4DaysAgoColor != 0)
-            days.add(fourDaysAgo);
+                days.add(fourDaysAgo);
             if (mActivity3DaysAgoColor != 0)
-            days.add(threeDaysAgo);
+                days.add(threeDaysAgo);
             if (mActivity2DaysAgoColor != 0) {
-            days.add(twoDaysAgo); }
+                days.add(twoDaysAgo);
+            }
 
             days.add(yesterday);
 
@@ -98,6 +99,8 @@ public class HistoryActivity extends AppCompatActivity {
         }
 
     }
+
+}
 
 
 
