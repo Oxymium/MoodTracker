@@ -26,7 +26,6 @@ public class SharedPreferencesUtils {
         return sharedPreferences.getString(key, string);
     }
 
-
     public static void saveInt(@NonNull Context context, @NonNull String key, int intValue) {
         SharedPreferences sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -38,6 +37,5 @@ public class SharedPreferencesUtils {
         SharedPreferences sharedPreferences = getSharedPreferences(context);
         return sharedPreferences.getInt(key, intDefaultValue);
     }
-
 
 }

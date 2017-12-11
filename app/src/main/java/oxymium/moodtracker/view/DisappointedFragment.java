@@ -15,8 +15,6 @@ public class DisappointedFragment extends Fragment {
     // Store instance variables
     private int page;
 
-
-
     // newInstance constructor for creating fragment with arguments
     public static DisappointedFragment newInstance(int page) {
         DisappointedFragment fragmentFirst = new DisappointedFragment();

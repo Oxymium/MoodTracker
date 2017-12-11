@@ -79,6 +79,8 @@ public class DayAdapter extends ArrayAdapter<Day> {
         // ---------------------------------------------------- //
 
         final int mScreenWidth = SharedPreferencesUtils.loadInt(context, "SCREEN_WIDTH", 0);
+        final int mScreenHeight = SharedPreferencesUtils.loadInt(context, "SCREEN_HEIGHT", 0);
+
 
         // System.out.println("VALEUR DE SCREEN : " + mScreenWidth);
 
@@ -88,31 +90,30 @@ public class DayAdapter extends ArrayAdapter<Day> {
         }
 
         if (days.mMoodColor == R.color.faded_red) {
-            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 20) / 100, dpToPx(80)));
+            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 20) / 100, mScreenHeight / 7));
         }
 
         if (days.mMoodColor == R.color.warm_grey) {
-            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 40) / 100, dpToPx(80)));
+            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 40) / 100, mScreenHeight / 7));
 
         }
 
         if (days.mMoodColor == R.color.cornflower_blue_65) {
-            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 60) / 100, dpToPx(80)));
+            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 60) / 100, mScreenHeight / 7));
 
         }
 
         if (days.mMoodColor == R.color.light_sage) {
-            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 80) / 100, dpToPx(80)));
-
+            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams((mScreenWidth * 80) / 100, mScreenHeight / 7));
 
         }
 
+        if (days.mMoodColor == R.color.banana_yellow) {
+            backgroundColor.setLayoutParams(new RelativeLayout.LayoutParams(mScreenWidth, mScreenHeight / 7));
+
+        }
 
         return convertView;
-    }
-
-    public static int dpToPx(int dp) {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
 }

@@ -72,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
     /* Screen size */
     public int mScreenWidth;
     public static final String SCREEN_WIDTH = "SCREEN_WIDTH";
+    public int mScreenHeight;
+    public static final String SCREEN_HEIGHT = "SCREEN_HEIGHT";
 
-    private static final String JAMBON = "JAMBON";
+
 
 
     @Override
@@ -103,13 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
         /* ScreenWidth in pixel */
             mScreenWidth = getResources().getDisplayMetrics().widthPixels;
-            System.out.println("MainActivity::SCREENVALUE = " + mScreenWidth);
+            mScreenHeight = getResources().getDisplayMetrics().heightPixels;
+
+        System.out.println("MainActivity::SCREENVALUE = " + mScreenWidth);
             SharedPreferencesUtils.saveInt(MainActivity.this, SCREEN_WIDTH, mScreenWidth);
-                    mPreferences.edit().putInt(SCREEN_WIDTH, mScreenWidth).apply();
-
-
-           SharedPreferencesUtils.saveString(MainActivity.this, JAMBON, "TEST");
-
+            SharedPreferencesUtils.saveInt(MainActivity.this, SCREEN_HEIGHT, mScreenHeight);
 
 
             //if (mCurrentDay2 != mCurrentDay && mLastDay != 0)
@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
            If Null (by default or when new day), set default view 「happy」 */
 
             if (mSmileyState == null || mCurrentDay != mDayChecker || mDayChecker == -1) {
-
 
                 // Day 7
                 mPreferences.edit().putString(SEVEN_DAYS_AGO_MOOD_COMMENT, getPreferences(MODE_PRIVATE).getString(SIX_DAYS_AGO_MOOD_COMMENT, null)).apply();
